@@ -1,15 +1,10 @@
 package code.name.monkey.retromusic.fragments.about
 
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
-import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
-import code.name.monkey.retromusic.App
-import code.name.monkey.retromusic.Constants
 import code.name.monkey.retromusic.R
 import code.name.monkey.retromusic.databinding.FragmentAboutBinding
-import code.name.monkey.retromusic.extensions.openUrl
 import code.name.monkey.retromusic.util.NavigationUtil
 import dev.chrisbanes.insetter.applyInsetter
 
@@ -55,21 +50,16 @@ class AboutFragment : Fragment(R.layout.fragment_about), View.OnClickListener {
             R.id.changelog -> NavigationUtil.gotoWhatNews(requireActivity())
             R.id.openSource -> NavigationUtil.goToOpenSource(requireActivity())
             R.id.bugReportLink -> NavigationUtil.bugReport(requireActivity())
-
-            val packageInfo =
-                requireActivity().packageManager.getPackageInfo(requireActivity().packageName, 0)
-            "${packageInfo.versionName} $isPro"
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
-            "0.0.0"
         }
     }
 
-    private fun shareApp() {
-        ShareCompat.IntentBuilder(requireActivity()).setType("text/plain")
-            .setChooserTitle(R.string.share_app)
-            .setText(String.format(getString(R.string.app_share), requireActivity().packageName))
-            .startChooser()
+    private fun getAppVersion(): String {
+        return try {
+            val packageInfo = requireActivity().packageManager.getPackageInfo(requireActivity().packageName, 0)
+            packageInfo.versionName ?: "0.0.0"
+        } catch (e: Exception) {
+            "0.0.0"
+        }
     }
 
     override fun onDestroyView() {
