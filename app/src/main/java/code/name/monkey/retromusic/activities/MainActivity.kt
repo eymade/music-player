@@ -31,7 +31,6 @@ import code.name.monkey.retromusic.model.CategoryInfo
 import code.name.monkey.retromusic.model.Song
 import code.name.monkey.retromusic.repository.PlaylistSongsLoader
 import code.name.monkey.retromusic.service.MusicService
-import code.name.monkey.retromusic.util.AppRater
 import code.name.monkey.retromusic.util.PreferenceUtil
 import code.name.monkey.retromusic.util.logE
 import kotlinx.coroutines.Dispatchers.IO
@@ -49,7 +48,6 @@ class MainActivity : AbsCastActivity() {
         setTaskDescriptionColorAuto()
         hideStatusBar()
         updateTabs()
-        AppRater.appLaunched(this)
 
         setupNavigationController()
 
