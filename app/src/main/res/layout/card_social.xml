@@ -34,7 +34,7 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sb3"
-            app:listItemIcon="@drawable/ic_github_white"
+            app:listItemIcon="@drawable/ic_github_circle"
             app:listItemSummary="在GitHub上查看源码"
             app:listItemTitle="GitHub" />
     </androidx.constraintlayout.widget.ConstraintLayout>
